@@ -1,0 +1,10 @@
+
+*.rst
+
+*.log
+
+*.aux
+
+*.fdb_latexmk
+
+*.tex
