@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage{amsmath}
+\usepackage[english, russian]{babel}
+\usepackage[margin=1cm]{geometry}
+\usepackage{minted}
+
+\setlength{\parindent}{0cm}
+
+\begin{document}
+
+\section{Генерация тестовых данных}
+
+<<echo=False>>=
+import numpy as np
+import random
+from scipy import stats
+from sklearn import linear_model
+
+
+n = 5 # number of features
+N = 100 # number of observations
+
+np.set_printoptions(precision=4)
+@
+Будем искать регрессию по $N=100$ наблюдениям $n=5$ признаков. \\
+Создадим ковариационную матрицу \texttt{covariance}, определяющую взаимозависимость признаков.
+<<wrap=False>>=
+covariance = np.zeros((n,n))
+for i in xrange(n):
+  for j in xrange(n):
+    covariance[i,j] = covariance[j, i] if covariance[j, i] != 0 else 2*random.random()-1
+  covariance = np.dot(covariance, np.matrix.transpose(covariance))
+@
+
+<<echo=False, wrap=False>>=
+print "covariance:\n{cov}\n".format(cov=covariance) # show covariance matrix
+@
+
+Определим операцию \texttt{random\_vector(R, N=1)}, которая возвращает вектор длины $N$ (по умолчанию равной 1), состоящий из реализаций нормально распределённого случайного вектора с ковариационной матрицей \texttt{R}. 
+<<wrap=False>>=
+def random_vector(R, N=1):
+  k = len(R[0]) # get number of features from covariance matrix because relying on global variables is a bad idea
+  x = np.empty((N, k)) # create empty array of given shape
+  # fill this array with random observations of normal distribution with given covariance matrix R
+  for i in xrange(N):
+    s = np.random.normal(size=len(R[0])) 
+    x[i] = np.dot(np.linalg.cholesky(R), s)
+  return x
+@
+
+Сгенерируем выборку \texttt{X} и получим значения \texttt{Y} как линейную функцию от \texttt{X} со случайным шумом.  
+<<>>=
+# get random sample
+X = random_vector(covariance, N)
+
+beta = np.array([3,2,0,1,1]) # regression coefficients
+sigma = 0.01 # noise variance
+
+# get Y that we will try to predict by X
+Y = np.add(np.dot(X, beta), np.random.normal(scale=sigma, size=N)) 
+@
+
+\section{Стандартная линейная регрессия}
+Объект \texttt{clf} после вызова функции \texttt{fit()} будет иметь всю информацию по поводу предсказания \texttt{Y} по \texttt{X}:
+<<>>=
+clf = linear_model.LinearRegression()
+clf.fit(X, Y)
+@
+<<echo=False, wrap=False>>=
+print "estimated regression:"
+print clf.coef_
+print "real regression:"
+print beta
+@
+Посчитаем коэффициенты линейной регрессии с помощью матрицы вторых моментов (\texttt{L} -- матрица вторых центральных моментов внутри $X$, \texttt{L0} -- вектор вторых центральных моментов между $X$ и $Y$, \texttt{mean\_x} = $\bar{X}$):
+<<>>=
+L = np.empty((n, n))
+mean_x = np.mean(X, axis=1)
+for i in xrange(n):
+  for j in xrange(n):
+    # map(f, X, ...) <=> sapply(X, f, ...)
+    L[i][j] = np.average(
+      map(lambda t: 
+        (X[t][i] - mean_x[i])*(X[t][j] - mean_x[j]), xrange(N)))
+L0 = np.empty((n, ))
+mean_y = np.mean(Y)
+L0 = map(lambda j: np.average(
+  map(lambda t: 
+    (Y[t] - mean_y)*(X[t][j] - mean_x[j]), xrange(N))), xrange(n))
+@
+Научимся считать алгебраические дополнения:
+<<>>=
+def matrix_cofactor(matrix, row, col):
+    nrows, ncols = matrix.shape
+    minor = np.zeros([nrows-1, ncols-1])
+    minor[:row,:col] = matrix[:row,:col]
+    minor[row:,:col] = matrix[row+1:,:col]
+    minor[:row,col:] = matrix[:row,col+1:]
+    minor[row:,col:] = matrix[row+1:,col+1:]
+    C = (-1)**(row+col) * np.linalg.det(minor)
+    return C
+@
+И посчитаем коэффициенты линейной регрессии:
+<<>>=
+LSM_expected_alpha = mean_y
+LSM_expected_beta = map(lambda i: 
+  np.sum(map(lambda j: 
+    L0[j]*matrix_cofactor(L,i,j), xrange(n)
+  ))/np.linalg.det(L), xrange(n))
+@
+<<echo=False, wrap=False>>=
+print "regression estimates, calculated using cofactors:"
+print np.array(LSM_expected_beta)
+print LSM_expected_alpha
+@
+
+\end{document}
+
+
+
+

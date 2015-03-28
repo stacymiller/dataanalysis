@@ -1,0 +1,522 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"LS",
+				"LSM_expected_alpha"
+			],
+			[
+				"ma",
+				"matrix_cofactor"
+			],
+			[
+				"y",
+				"Y"
+			],
+			[
+				"mean",
+				"mean_x"
+			],
+			[
+				"es",
+				"estimated_sigma"
+			],
+			[
+				"in",
+				"intercept_"
+			],
+			[
+				"cl",
+				"clf"
+			],
+			[
+				"si",
+				"size"
+			],
+			[
+				"ra",
+				"random"
+			],
+			[
+				"ran",
+				"random_vector"
+			],
+			[
+				"eig",
+				"eigvals"
+			],
+			[
+				"ei",
+				"eigvectors"
+			],
+			[
+				"f",
+				"for	For Loop"
+			],
+			[
+				"e",
+				"e"
+			],
+			[
+				"eta",
+				"ETA_CONST"
+			],
+			[
+				"pri",
+				"print"
+			],
+			[
+				"get",
+				"get_holton_sequence"
+			],
+			[
+				"bas",
+				"bases"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"prin",
+				"prime_generator"
+			],
+			[
+				"res",
+				"res_m"
+			],
+			[
+				"p",
+				"p_m"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"len",
+				"length-1"
+			],
+			[
+				"chi",
+				"children"
+			],
+			[
+				"chil",
+				"children"
+			],
+			[
+				"step",
+				"stepPrice"
+			],
+			[
+				"ans",
+				"answerSubset"
+			],
+			[
+				"la",
+				"lastChild"
+			],
+			[
+				"bran",
+				"branch"
+			],
+			[
+				"new",
+				"new_price"
+			],
+			[
+				"st",
+				"steps"
+			],
+			[
+				"ste",
+				"stepPrice"
+			],
+			[
+				"sqrt",
+				"sqrt_td"
+			],
+			[
+				"branch",
+				"branches"
+			],
+			[
+				"di",
+				"dispersions"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
+				"no",
+				"norm"
+			],
+			[
+				"norm",
+				"normal"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "dataanalysis.py",
+			"settings":
+			{
+				"buffer_size": 3159,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"rec",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 386.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/stacymiller/Documents/dataanalysis"
+	],
+	"file_history":
+	[
+		"/Users/stacymiller/Documents/dataanalysis/report1.tex",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/Pweave.sublime-build",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/Pweave.YAML-tmLanguage",
+		"/Users/stacymiller/Documents/dataanalysis/report1.Pnw",
+		"/Users/stacymiller/Documents/bookmatetest.html",
+		"/Users/stacymiller/Documents/dataanalysis/buildpweave.sh",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/Pweave.JSON-tmLanguage",
+		"/Users/stacymiller/Documents/dataanalysis/epython_stderr.log",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/JSON.sublime-settings",
+		"/Users/stacymiller/Documents/dataanalysis/report1.rst",
+		"/Users/stacymiller/Documents/dataanalysis/input.txt",
+		"/Users/stacymiller/Documents/dataanalysis/C.py",
+		"/Users/stacymiller/Documents/dataanalysis/dataanalysis.py",
+		"/Users/stacymiller/Downloads/PRMatProgm14.tex",
+		"/Users/stacymiller/Documents/dataanalysis/dataanalysis.sublime-project",
+		"/Users/stacymiller/Documents/dataanalysis.py",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VIII семестр/Сушков/TEX_3k/TEX3KURS.pdf",
+		"/Users/stacymiller/Documents/montecarlo/stratifiedsample.py",
+		"/Users/stacymiller/Documents/montecarlo/quasirandom.py",
+		"/Users/stacymiller/Documents/coursepaper/paper/biblio-u.bib",
+		"/Users/stacymiller/Downloads/beamerstatmodexample/beamerStatmodExample.tex",
+		"/Users/stacymiller/Documents/coursepaper/paper/7th-semester-presentation.tex",
+		"/Users/stacymiller/Documents/coursepaper/paper/6th-semester.tex",
+		"/Users/stacymiller/Documents/coursepaper/paper/7th-semester.tex",
+		"/Users/stacymiller/Documents/coursepaper/paper/7th-semester-blx.bib",
+		"/Users/stacymiller/Documents/coursepaper/paper/untitled",
+		"/Users/stacymiller/Documents/coursepaper/app/src/Main.java",
+		"/Users/stacymiller/Documents/jgraphx-master/src/com/mxgraph/examples/swing/HelloWorld.java",
+		"/Users/stacymiller/Documents/jgraphx-master/examples/com/mxgraph/examples/swing/HelloWorld.java",
+		"/Users/stacymiller/Downloads/03sim-2/qt/sim.out",
+		"/Users/stacymiller/Downloads/03sim/qt/sim.out",
+		"/Users/stacymiller/Documents/computations/comp-1-fredg.py",
+		"/Users/stacymiller/Documents/App.java",
+		"/Users/stacymiller/Downloads/[rutracker.org].t4809606.torrent",
+		"/Users/stacymiller/Documents/coursepaper/app/App.java",
+		"/Users/stacymiller/Documents/coursepaper/app/app.java",
+		"/Applications/Development/Sublime Text.app/Contents/MacOS/changelog.txt",
+		"/Users/stacymiller/devel/intdev-testing/ind/new_logins.txt",
+		"/Users/stacymiller/Downloads/wordpress/wp-config.php",
+		"/Users/stacymiller/devel/build/scr.py",
+		"/Users/stacymiller/devel/intdev-testing/ind/.git/info/exclude",
+		"/Users/stacymiller/Downloads/Shop%20Wizard%20test%20data%20-%20PI.csv",
+		"/Users/stacymiller/Downloads/probtheory-coursework/refer.tex",
+		"/Users/stacymiller/Downloads/probtheory-coursework/main.tex",
+		"/Users/stacymiller/Downloads/probtheory-coursework/task2.tex",
+		"/Users/stacymiller/Downloads/probtheory-coursework/task4.tex",
+		"/Users/stacymiller/Downloads/probtheory-coursework/biblio.bib",
+		"/Users/stacymiller/Downloads/probtheory-coursework/task3.tex",
+		"/Users/stacymiller/Downloads/probtheory-coursework/task1.tex",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/Теорвер/Коллекция опечаток.txt",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/ФАН/Fan2.0 (Конфликтующая копия с компьютера Sergey Yelnik 2014-06-14).pdf",
+		"/Users/stacymiller/Documents/coursepaper/6th-semester.tex",
+		"/Users/stacymiller/Documents/coursepaper/coursepaper.tex",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/Матлогика/Билеты/Шаблон.tex",
+		"/Users/stacymiller/Dropbox/palindrome.txt",
+		"/Users/stacymiller/Documents/mathlogic/palindrome.txt",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/Матлогика/Билеты/1.92.tex",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/Матлогика/Билеты/1.94.tex",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/Матлогика/Билеты/1.91.tex",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/Матлогика/Билеты/quest.tex",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/Матлогика/Билеты/Шаблон_utf8.tex",
+		"/Users/stacymiller/tasks/Билеты/1.90.tex",
+		"/Users/stacymiller/tasks/1.89.tex",
+		"/Users/stacymiller/tasks/quest.tex",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/stacymiller/tasks/1.88.tex",
+		"/Users/stacymiller/Documents/mathlogic/1.75.tex",
+		"/Users/stacymiller/tasks/1.87.tex",
+		"/Users/stacymiller/tovstik.py",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VI семестр/Матлогика/Билеты/ReadMeTEX.txt",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/LaTeX math.sublime-completions",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/stacymiller/baby.hs",
+		"/Users/stacymiller/Documents/test.tex",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/README.markdown",
+		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/Users/stacymiller/Documents/textest.tex"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"<open files>",
+			"dataanalysis.py",
+			"",
+			"7th-semester.tex",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"echo",
+			"регрессию",
+			"eigvals",
+			"dispersions",
+			"###############\n",
+			"print ",
+			"print *[\\n]",
+			"print *\\n",
+			"covariations",
+			"Cov",
+			"Dy ",
+			"[0-9][0-9] ",
+			"[\\n ][0-9]\\.",
+			"[\\n ][0-9][0-9]\\.",
+			"\\n[0-9][0-9]\\.",
+			"[0-9][0-9]\\.",
+			"5",
+			"observations",
+			"holton",
+			" - ",
+			" -- ",
+			"\\ref{",
+			" -- ",
+			"\\subsection",
+			"\\section",
+			"enumerate",
+			") check that",
+			" Check that",
+			"def",
+			"->",
+			"''",
+			"3",
+			" [",
+			"AV",
+			"comp"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"covariance",
+			"covariations",
+			"dispersions",
+			"\\\\item ",
+			"\\\\item",
+			"\\item",
+			"n",
+			"obs_m",
+			"halton",
+			" --- ",
+			"\\section",
+			"\\chapter",
+			"	enumerate\n",
+			"enumerate",
+			") Check that",
+			" check that",
+			"dfn",
+			"def",
+			":",
+			"-",
+			"$"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "dataanalysis.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3159,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								239,
+								671
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 298.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.package_dev":
+	{
+		"height": 215.0
+	},
+	"pinned_build_system": "",
+	"project": "dataanalysis.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 179.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
