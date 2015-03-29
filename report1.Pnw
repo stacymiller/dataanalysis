@@ -62,12 +62,15 @@ sigma = 0.01 # noise variance
 Y = np.add(np.dot(X, beta), np.random.normal(scale=sigma, size=N)) 
 @
 
+Таким образом, мы получили набор $\left\{\left\{x_{ji}\right\}_{i=1}^p\right\}_{j=1}^n$ и набор $\left\{y_i\right\}_{i=1}^n$, причём $$\label{eq:realregresstion}y_i = 3 \cdot x_{1i} + 2 \cdot x_{2i} + 0 \cdot x_{3i} + 1 \cdot x_{4i} + 1\cdot x_{5i} + \varepsilon_i, \varepsilon_i ~ N\left(0,1\right)$$.
+
 \section{Стандартная линейная регрессия}
 Объект \texttt{clf} после вызова функции \texttt{fit()} будет иметь всю информацию по поводу предсказания \texttt{Y} по \texttt{X}:
 <<>>=
 clf = linear_model.LinearRegression()
 clf.fit(X, Y)
 @
+
 <<echo=False, wrap=False>>=
 print "estimated regression:"
 print clf.coef_
