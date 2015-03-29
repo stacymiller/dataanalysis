@@ -5,5 +5,13 @@
 			"follow_symlinks": true,
 			"path": "."
 		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "Pweave",
+			"path": "$PATH;.",
+			"shell_cmd": "./buildpweave.sh $file_base_name"
+		}
 	]
 }
