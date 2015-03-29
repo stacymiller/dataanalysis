@@ -3,7 +3,7 @@
 \usepackage[T2A]{fontenc}
 \usepackage{amsmath}
 \usepackage[english, russian]{babel}
-\usepackage[margin=1cm]{geometry}
+\usepackage[margin=1.5cm]{geometry}
 \usepackage{minted}
 
 \setlength{\parindent}{0cm}
@@ -32,6 +32,7 @@ for i in xrange(n):
   for j in xrange(n):
     covariance[i,j] = covariance[j, i] if covariance[j, i] != 0 else 2*random.random()-1
   covariance = np.dot(covariance, np.matrix.transpose(covariance))
+#blabla
 @
 
 <<echo=False, wrap=False>>=
@@ -62,7 +63,7 @@ sigma = 0.01 # noise variance
 Y = np.add(np.dot(X, beta), np.random.normal(scale=sigma, size=N)) 
 @
 
-Таким образом, мы получили набор $\left\{\left\{x_{ji}\right\}_{i=1}^p\right\}_{j=1}^n$ и набор $\left\{y_i\right\}_{i=1}^n$, причём $$\label{eq:realregresstion}y_i = 3 \cdot x_{1i} + 2 \cdot x_{2i} + 0 \cdot x_{3i} + 1 \cdot x_{4i} + 1\cdot x_{5i} + \varepsilon_i, \varepsilon_i ~ N\left(0,1\right)$$.
+Таким образом, мы получили набор $\left\{\left\{x_{ji}\right\}_{i=1}^p\right\}_{j=1}^n$ и набор $\left\{y_i\right\}_{i=1}^n$, причём $$\label{eq:realregresstion}y_i = 3 \cdot x_{1i} + 2 \cdot x_{2i} + 0 \cdot x_{3i} + 1 \cdot x_{4i} + 1\cdot x_{5i} + \varepsilon_i, \varepsilon_i \sim N\left(0,1\right)$$.
 
 \section{Стандартная линейная регрессия}
 Объект \texttt{clf} после вызова функции \texttt{fit()} будет иметь всю информацию по поводу предсказания \texttt{Y} по \texttt{X}:
@@ -70,29 +71,15 @@ Y = np.add(np.dot(X, beta), np.random.normal(scale=sigma, size=N))
 clf = linear_model.LinearRegression()
 clf.fit(X, Y)
 @
-
+\texttt{LinearRegression()} подразумевает модель регрессии вида $y = \beta_0 + \beta_1 \cdot x_1 + \ldots + \beta_p \cdot x_p$, рассматривая которую, мы должны получить коэффициенты регрессии, близкие к $\beta_0 = 0, \beta_1 = 3, \beta_2 = 2, \beta_3 = 0, \beta_4 = 1, \beta_5 = 1$. 
 <<echo=False, wrap=False>>=
 print "estimated regression:"
-print clf.coef_
+print clf.intercept_, clf.coef_
 print "real regression:"
 print beta
 @
-Посчитаем коэффициенты линейной регрессии с помощью матрицы вторых моментов (\texttt{L} -- матрица вторых центральных моментов внутри $X$, \texttt{L0} -- вектор вторых центральных моментов между $X$ и $Y$, \texttt{mean\_x} = $\bar{X}$):
-<<>>=
-L = np.empty((n, n))
-mean_x = np.mean(X, axis=1)
-for i in xrange(n):
-  for j in xrange(n):
-    # map(f, X, ...) <=> sapply(X, f, ...)
-    L[i][j] = np.average(
-      map(lambda t: 
-        (X[t][i] - mean_x[i])*(X[t][j] - mean_x[j]), xrange(N)))
-L0 = np.empty((n, ))
-mean_y = np.mean(Y)
-L0 = map(lambda j: np.average(
-  map(lambda t: 
-    (Y[t] - mean_y)*(X[t][j] - mean_x[j]), xrange(N))), xrange(n))
-@
+\section{Подсчёт коэффициентов линейной регрессии с помощью матрицы вторых моментов}
+Оценим коэффициенты линейной регрессии в модели $y_i = \alpha + \beta_1(x_{1i} - \bar{x_1}) + \ldots + \beta_p(x_{pi} - \bar{x_p})$ (\texttt{L} -- матрица вторых центральных моментов внутри $X$, \texttt{L0} -- вектор вторых центральных моментов между $X$ и $Y$, \texttt{mean\_x} = $\bar{X}$).
 Научимся считать алгебраические дополнения:
 <<>>=
 def matrix_cofactor(matrix, row, col):
@@ -105,18 +92,39 @@ def matrix_cofactor(matrix, row, col):
     C = (-1)**(row+col) * np.linalg.det(minor)
     return C
 @
-И посчитаем коэффициенты линейной регрессии:
+Построим матрицу вторых моментов и оценки параметров по ней:
 <<>>=
+L = np.empty((n, n))
+mean_x = np.mean(X, axis=0)
+for i in xrange(n):
+  for j in xrange(n):
+    # map(f, X, ...) <=> sapply(X, f, ...)
+    L[i][j] = np.average(
+      map(lambda t: 
+        (X[t][i] - mean_x[i])*(X[t][j] - mean_x[j]), xrange(N)))
+L0 = np.empty((n, ))
+mean_y = np.mean(Y)
+L0 = map(lambda j: np.average(
+  map(lambda t: 
+    (Y[t] - mean_y)*(X[t][j] - mean_x[j]), xrange(N))), xrange(n))
+
 LSM_expected_alpha = mean_y
 LSM_expected_beta = map(lambda i: 
   np.sum(map(lambda j: 
     L0[j]*matrix_cofactor(L,i,j), xrange(n)
   ))/np.linalg.det(L), xrange(n))
 @
+Оценки вектора $(\beta_1, \ldots , \beta_5)$ должны оказаться похожими на изначально заданное \texttt{beta}:
 <<echo=False, wrap=False>>=
 print "regression estimates, calculated using cofactors:"
 print np.array(LSM_expected_beta)
-print LSM_expected_alpha
+print "real regression:"
+print beta
+@
+Параметр $\beta_0$, равный 0 в нашем случае, получается как $\beta_0 = \alpha - \beta_1\bar{x_1} + \ldots + \beta_p\bar{x_p} $
+<<wrap=False>>=
+beta_0 = LSM_expected_alpha - np.sum(map(lambda x,y: x*y, beta, mean_x))
+print beta_0
 @
 
 \end{document}
