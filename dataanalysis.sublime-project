@@ -12,6 +12,14 @@
 			"name": "Pweave",
 			"path": "$PATH;.",
 			"shell_cmd": "./buildpweave.sh $file_base_name"
+		},
+		{
+			"name": "Cleanup",
+			"shell_cmd": "rm -r *.tex *.log *.aux *.fdb_latexmk"
+		},
+		{
+			"name": "Ptangle",
+			"shell_cmd": "Ptangle $file_name"
 		}
 	]
 }
