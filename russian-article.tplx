@@ -1,0 +1,17 @@
+((* set cell_style = 'style_notebook.tplx' *))
+((* extends 'article.tplx' *))
+((* block packages *))
+    ((( super() )))
+    \usepackage[T2A]{fontenc}
+    \usepackage[english, russian]{babel}
+((* endblock packages *))
+((* block definitions *))
+    ((( super() )))
+    \setlength{\parindent}{0cm}
+((* endblock definitions *))
+((* block title *))
+	\title{Метод главных компонент}
+((* endblock title *))
+((* block author *))
+	\author{Анастасия Миллер}
+((* endblock author *))

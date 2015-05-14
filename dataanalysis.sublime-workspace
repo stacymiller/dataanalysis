@@ -164,22 +164,54 @@
 	"buffers":
 	[
 		{
-			"file": "dataanalysis.py",
+			"file": "nbconvert-examples/notebook_cell_style/my_output.tplx",
 			"settings":
 			{
-				"buffer_size": 3159,
+				"buffer_size": 197,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "russian-article.tplx",
+			"settings":
+			{
+				"buffer_size": 472,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "cfg.py",
+			"settings":
+			{
+				"buffer_size": 183,
 				"line_ending": "Unix"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Python/Python.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
 	],
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 67.0,
+		"height": 187.0,
 		"last_filter": "",
 		"selected_items":
 		[
@@ -196,7 +228,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 584.0
 	},
 	"console":
 	{
@@ -221,21 +253,36 @@
 	],
 	"file_history":
 	[
+		"/Users/stacymiller/Documents/dataanalysis/hotelling.tex",
+		"/Library/Python/2.7/site-packages/IPython/nbconvert/templates/latex/base.tplx",
+		"/Users/stacymiller/Documents/dataanalysis/dataanalysis.sublime-project",
+		"/Users/stacymiller/Documents/dataanalysis/russian-article.tplx",
+		"/Users/stacymiller/Documents/dataanalysis/report3.tex",
+		"/Users/stacymiller/Documents/dataanalysis/nbconvert-examples/notebook_cell_style/style_notebook.tplx",
+		"/Users/stacymiller/Documents/dataanalysis/nbconvert-examples/notebook_cell_style/ipython_nbconvert_config.py",
+		"/Users/stacymiller/Documents/dataanalysis/nbconvert-examples/hr_cell_style/ipython_nbconvert_config.py",
+		"/Users/stacymiller/Dropbox/SAPR/VIII_semester/Tovstik/questions.tex",
+		"/Users/stacymiller/Documents/dataanalysis/report2.Pnw",
+		"/Users/stacymiller/Dropbox/Mat-Mex files/VIII семестр/Актуарная математика/ActMath.tex",
+		"/Users/stacymiller/Documents/statistics/MLE/parallelcomparison.txt",
+		"/Users/stacymiller/Documents/dataanalysis/report2.py",
+		"/Users/stacymiller/Documents/dataanalysis/report1.Pnw",
+		"/Users/stacymiller/Documents/dataanalysis/dataanalysis.py",
+		"/Users/stacymiller/Documents/dataanalysis/epython_stderr.log",
+		"/Users/stacymiller/Documents/dataanalysis/report2.log",
+		"/Users/stacymiller/Documents/dataanalysis/buildpweave.sh",
+		"/Users/stacymiller/Documents/dataanalysis/report2.tex",
 		"/Users/stacymiller/Documents/dataanalysis/report1.tex",
+		"/Users/stacymiller/Documents/dataanalysis/report1.py",
 		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/Pweave.sublime-build",
 		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/Pweave.YAML-tmLanguage",
-		"/Users/stacymiller/Documents/dataanalysis/report1.Pnw",
 		"/Users/stacymiller/Documents/bookmatetest.html",
-		"/Users/stacymiller/Documents/dataanalysis/buildpweave.sh",
 		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/Pweave.JSON-tmLanguage",
-		"/Users/stacymiller/Documents/dataanalysis/epython_stderr.log",
 		"/Users/stacymiller/Library/Application Support/Sublime Text 3/Packages/User/JSON.sublime-settings",
 		"/Users/stacymiller/Documents/dataanalysis/report1.rst",
 		"/Users/stacymiller/Documents/dataanalysis/input.txt",
 		"/Users/stacymiller/Documents/dataanalysis/C.py",
-		"/Users/stacymiller/Documents/dataanalysis/dataanalysis.py",
 		"/Users/stacymiller/Downloads/PRMatProgm14.tex",
-		"/Users/stacymiller/Documents/dataanalysis/dataanalysis.sublime-project",
 		"/Users/stacymiller/Documents/dataanalysis.py",
 		"/Users/stacymiller/Dropbox/Mat-Mex files/VIII семестр/Сушков/TEX_3k/TEX3KURS.pdf",
 		"/Users/stacymiller/Documents/montecarlo/stratifiedsample.py",
@@ -309,6 +356,7 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"<current file>",
 			"<open files>",
 			"dataanalysis.py",
 			"",
@@ -321,6 +369,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"title",
+			"cell.input",
+			"«Моделирование случайных процессов» (2015)\nВопросы к курсу 4/9, Товстик Т.М.\n",
 			"echo",
 			"регрессию",
 			"eigvals",
@@ -363,6 +414,7 @@
 		"regex": true,
 		"replace_history":
 		[
+			"cell.source",
 			"covariance",
 			"covariations",
 			"dispersions",
@@ -394,36 +446,91 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "dataanalysis.py",
+					"file": "nbconvert-examples/notebook_cell_style/my_output.tplx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3159,
+						"buffer_size": 197,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								239,
-								671
+								180,
+								180
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "russian-article.tplx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 472,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								376,
+								376
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "cfg.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 183,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								85,
+								85
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -472,7 +579,7 @@
 	{
 		"height": 215.0
 	},
-	"pinned_build_system": "",
+	"pinned_build_system": "Cleanup",
 	"project": "dataanalysis.sublime-project",
 	"replace":
 	{
