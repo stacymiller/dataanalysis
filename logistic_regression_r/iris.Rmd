@@ -1,0 +1,31 @@
+---
+title: "Logit-iris"
+author: "Анастасия Миллер"
+date: "22 сентября 2015 г."
+output: html_document
+---
+
+Подготовим данные:
+
+```{r}
+data <- iris
+index <- which(1:length(data[,1])%%5 == 0)
+train <- data[-index,] # обучающая выборка
+test <- data[index,] # тестовая выборка
+train$is.setosa <- (train$Species == 'setosa')
+```
+
+Построим логистическую регрессию, предсказывающую вид цветка по всем известным данным:
+
+```{r}
+formula <- is.setosa ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
+model <- glm(formula, data=train, family="binomial")
+summary(model)
+```
+
+Предскажем значения в тестовой выборке:
+
+```{r}
+result <- predict(model, newdata=test, type='response')
+all.equal(as.numeric(result), as.numeric(test$Species=='setosa'))
+```

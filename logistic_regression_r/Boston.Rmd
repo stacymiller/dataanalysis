@@ -1,0 +1,88 @@
+---
+title: "Логистическая регрессия"
+author: "Анастасия Миллер, Дмитрий Корчемкин"
+date: "23 сентября 2015 г."
+output: pdf_document
+--- 
+## Задача
+Предсказать значение номинативной переменной (здесь и далее -- с двумя градациями). Будем предсказывать вероятность принятия с.в. одного из значений (второе будет появляться автоматически).
+
+$Y_i$ -- бинарная предсказываемая переменная, $X = (X_1, \cdots, X_k)$ -- предикторы. Модель:
+
+$$\pi_i = P(Y_i = 1 \vert X_i = x_i) = \frac{1}{1 + \exp (\beta_0 + \beta_1 x_i^1 + \cdots + \beta_k x_i^k)}$$
+
+Иначе говоря -- линейная модель относительно логит-функции от вероятности:
+
+$$\mathrm{logit}(\pi_i) = \beta_0 + \beta_1 x_i^1 + \cdots + \beta_k x_i^k$$
+
+Необходимо подобрать $(\beta_0, \cdots, \beta_k)$, максимизирующие функцию правдоподобия. Аналитического решения в общем случае не существует, так что используются итеративные алгоритмы.
+
+### Предположения
+
+- Данные для различных индивидов независимы и одинаково распределены
+- $Y_i \sim \mathsf{Bin}(n_i, \pi_i)$, $X_i$ обычно предполагаются из экспоненциального семейства
+- Ошибки наблюдений должны быть независимы
+- Для подбора коэффициентов используется MLE, то есть нужна достаточно большая выборка
+
+
+## Пример
+### Данные:
+
+- Household Income (`Income`; rounded to the nearest $1,000.00)
+- Gender (`IsFemale` = 1 if the person is female, 0 otherwise)
+- Marital Status (`IsMarried` = 1 if married, 0 otherwise)
+- College Educated (`HasCollege` = 1 if has one or more years of college education, 0 otherwise)
+- Employed in a Profession (`IsProfessional` = 1 if employed in a profession, 0 otherwise)
+- Retired (`IsRetired` = 1 if retired, 0 otherwise)
+- Not employed (`Unemployed` = 1 if not employed,  0 otherwise)
+- Length of Residency in Current City (`ResLength`; in years)
+- Dual Income if Married (`Dual` = 1 if dual income, 0 otherwise)
+- Children (`Minors` = 1 if children under 18 are in the household, 0 otherwise)
+- Home ownership (`Own` = 1 if own residence, 0 otherwise)
+- Resident type (`House` = 1 if residence is a single family house, 0 otherwise)
+- Race (`White` = 1 if race is white, 0 otherwise)
+- Language (`English` = 1 is the primary language in the household is English, 0 otherwise)
+- Previously purchased a parenting magazine (`PrevParent` = 1 if previously purchased a parenting magazine, 0 otherwise).
+- Previously purchased a children’s magazine (`PrevChild` = 1 if previously purchased a children’s magazine)
+- Purchased “Kid Creative” (`Buy` = 1 if purchased “Kid Creative,” 0 otherwise)
+
+```{r}
+data <- read.csv("KidCreative.csv")
+for (factor in c('Buy', 'Is.Female', 'Is.Married', 'Has.College', 'Is.Professional', 'Is.Retired', 'Unemployed', 'Dual.Income', 'Minors', 'Own', 'House', 'White', 'English', 'Prev.Child.Mag', 'Prev.Parent.Mag')) {
+  data[, factor] <- factor(data[, factor], levels=c('0','1'), labels=c('0','1'))
+}
+```
+
+Разделим данные на тренировочную и тестовую выборку:
+
+```{r}
+index <- which(1:length(data[,1])%%5 == 0)
+train <- data[-index,] # обучающая выборка
+test <- data[index,] # тестовая выборка
+```
+
+Обучимся по обучающей выборке:
+
+```{r}
+model <- glm(Buy ~ ., train, family="binomial")
+summary(model)
+```
+
+Много незначимых признаков, выберем только значимые. Выбор происходит по тем же принципам (более того, вызывается точно та же функция), что и с линейной моделью: 
+
+```{r}
+model.significant <- step(model)
+```
+
+```{r}
+summary(model.significant)
+```
+
+Проверим качество предсказания на тестовой выборке:
+
+```{r}
+result <- predict(model, newdata=test, type='response') # вектор вероятностей
+length(which(as.numeric(result > 0.4) == test$Buy)) / length(test$Buy)
+```
+
+Параметр `type` показывает, в какой шкале будут построены предсказываемые значения: в шкале линейных предикторов (`"link"`), что в нашем случае означает вероятности в логистической шкале, или в шкале ответов (`"response"`), что для нас означает как раз искомые вероятности.

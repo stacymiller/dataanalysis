@@ -1,11 +1,14 @@
+## IPython
+*.ipynb_checkpoints
 
 *.rst
-
 *.log
-
 *.aux
-
 *.fdb_latexmk
-
 *.tex
+*.fls
+*.synctex.gz
+
+## R / RStudio
 .Rproj.user
+.Rhistory

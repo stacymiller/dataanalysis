@@ -1,0 +1,126 @@
+---
+title: "Boston"
+date: "23 сентября 2015 г."
+output: 
+  html_document:
+    theme: flatly
+---
+
+```{r, echo=FALSE, warning=FALSE}
+library(MASS);
+library(nortest);
+library(lattice);
+library(moments);
+
+B <- Boston;
+
+panel.hist.splom<-function(x, ...) 
+{ 
+  yrng <- current.panel.limits()$ylim 
+	h <- hist(x, plot = FALSE) 
+	breaks <- h$breaks; nB <- length(breaks) 
+	y <- h$counts; y <- yrng[1] + 0.95 * diff(yrng) * y / max(y) 
+	panel.rect(breaks[-nB], yrng[1], breaks[-1], y,   
+			   col="cyan", ...) 
+} 
+panel.hist <- function(x, ...)
+{
+	usr <- par("usr"); on.exit(par(usr))
+	par(usr = c(usr[1:2], 0, 1.5) )
+	h <- hist(x, plot = FALSE)
+	breaks <- h$breaks; nB <- length(breaks)
+	y <- h$counts; y <- y/max(y)
+	rect(breaks[-nB], 0, breaks[-1], y, col = "cyan", ...)
+}
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...)
+{
+	usr <- par("usr"); on.exit(par(usr))
+	par(usr = c(0, 1, 0, 1))
+	r <- abs(cor(x, y))
+	txt <- format(c(r, 0.123456789), digits = digits)[1]
+	txt <- paste0(prefix, txt)
+	if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+	text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+```
+
+```{r}
+head(B)
+```
+
+Посмотрим на распределения
+
+```{r, echo=FALSE, fig.height=8}
+par(mfrow=c(4,4))
+for (feature in names(B)) {
+    hist(B[,feature], main=feature)
+}
+```
+
+Удалим те признаки, у которых распределения совсем неприятные:
+
+```{r}
+interest1 = c('crim', 'zn', 'indus', 'nox', 'rm', 'age', 'dis', 'rad', 'lstat', 'medv')
+```
+
+Прологарифмируем несимметричные распределения и отберём ещё поменьше признаков:
+
+```{r}
+B$logCrim <- log(B$crim);
+B$logNox <- log(B$nox);
+B$logRm <- log(B$rm);
+B$logMedv <- log(B$medv);
+B$logLstat <- log(B$lstat);
+B$logDis <- log(B$dis)
+interest2 <- c('logCrim', 'zn', 'indus', 'logNox', 'logRm', 'age', 'logDis', 'rad', 'logLstat', 'logMedv')
+```
+
+Посмотрим на общий график:
+
+```{r, echo=FALSE, fig.height=8}
+splom(B[,interest2])
+```
+
+Более крупно самую интересную часть:
+
+```{r, echo=FALSE}
+splom(B[, c('indus', 'rad', 'logCrim')])
+```
+
+Видим, что данные линейно разделимы. Разделим их по тем прямым, по которым их визуально хочется разделить, и проверим наше деление:
+
+```{r, fig.height=8}
+B$group <- (B$indus < (-2.5 * B$logCrim + 15)) & (B$rad < 20)
+splom(B[,interest2], group=B$group)
+BG <- B[B$group,];
+```
+
+В наибольшей группе попытаемся предсказать среднюю стоимость дома по всем остальным переменным:
+
+```{r}
+model0 <- lm(logMedv ~ zn+indus+age+rad+logCrim+logNox+logRm+logLstat+logDis, data = BG)
+summary(model0)
+```
+
+Уберём наименее значимые признаки:
+
+```{r}
+model1 <-lm(logMedv ~ logNox+logRm+logDis+logLstat, data = BG);
+summary(model1);
+```
+
+`nox` -- концентрация оксидов азота в атмосфере
+
+`rm` -- среднее число комнат в строении
+
+`dis` -- средневзвешенное расстояние от пяти бостонских центров трудоустройства
+
+`lstat` -- процент бедного населения
+
+Всё логично.
+
+Посмотрим на качество предсказаний модели. График ошибок предсказания против предсказанных значений должен быть "равномерным", график квантиль-квантиль стандартизованных остатков должен быть похож на прямую, график сдвига-масштаба -- то же самое, что и residuals vs. fitted, только с стандартизованными остатками, тоже должен быть равномерным и не выезжать за пределы, приличные для нормального распределения. График влиятельности на остатки должен быть кучным.
+
+```{r}
+plot(model1)
+```

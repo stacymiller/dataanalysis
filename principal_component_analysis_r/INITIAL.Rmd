@@ -1,0 +1,49 @@
+---
+title: "INITIAL"
+author: "Анастасия Миллер"
+date: "1 октября 2015 г."
+output: html_document
+---
+
+```{r}
+INITIAL <- read.table("~/Documents/statistics/PCA/INITIAL.DAT", header=TRUE, quote="\"")
+TEETH <- read.table("~/Documents/statistics/PCA/TEETH.INF", header=TRUE, quote="\"")
+TEETH$prd <- factor(TEETH$prd)
+TEETH$sex <- factor(TEETH$sex)
+aggregated <- INITIAL[,-1] # cbind(INITIAL[,-1], TEETH[,-1])
+```
+
+0. Посмотреть на график собственных чисел
+
+Выборочная дисперсия $i$-й главной компоненты равна $i$-му собственному числу. 
+```{r}
+# centered <- data.frame(sapply(aggregated, function(x){if (is.numeric(x)) { x-mean(x) } else x}))
+pc <- prcomp(aggregated,  scale. = TRUE)
+summary(pc)
+# pc.standartized <- prcomp(aggregated, scale. = TRUE)
+plot(pc)
+```
+
+1. Проинтерпретировать главные компоненты (их связь с исходными признаками),
+используя значения собственных векторов, а также двумерные диаграммы факторных весов.
+`sdev` -- стандартные отклонения главных компонент (квадратные корни из с.ч. ковариационной/корреляционной матрицы). Масштаб матрицы зависит от параметра `scale.`. Матрица факторных весов -- это `rotation`.
+
+```{r}
+print(pc$rotation)
+```
+
+Близкие к нулю значения -- жёлтые, большие отрицательные -- красные, большие положительные -- белые.
+
+2. Посмотреть на двумерные графики нормированных значений главных компонент
+(значений факторов), увидеть, есть ли неоднородность в данных
+и есть ли выделяющиеся наблюдения.
+```{r}
+biplot(pc)
+```
+
+Неоднородности не наблюдается, разве что "хвост" влево-вниз тяжелее, чем вправо-вверх. Хотя некоторые наблюдения всё же можно убрать.
+
+```{r}
+adapted <- aggregated[-c(4,6,31,222,183,246,138,83,22),]
+biplot(prcomp(adapted))
+```
